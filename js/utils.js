@@ -157,9 +157,8 @@ const shortcuts = {
 
     // Scroll the entire result container into view if it's not already.
     const rect = target.container.getBoundingClientRect();
-    const offsetY = rect.bottom - window.innerHeight;
-    if (offsetY > 0) {
-      window.scrollBy(0, offsetY);
+    if (rect.top < 0 || rect.bottom > window.innerHeight) {
+      window.scrollTo({ top: window.scrollY + rect.top - 80 });
     }
 
     target.focusElement.focus();
